@@ -1,4 +1,3 @@
-// pages/index.tsx
 "use client"
 // pages/index.tsx
 import { useState } from 'react';
@@ -7,8 +6,12 @@ export default function Home() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    password: '',
     education: '',
     experience: '',
+    currentPosition: '',
+    certifications: '',
+    projects: '',
     skills: '',
   });
 
@@ -33,7 +36,6 @@ export default function Home() {
       <h1 className="text-5xl font-bold text-blue-600 mb-8">Resume Builder</h1>
 
       <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-8">
-        {/* Form Section */}
         {!submitted && (
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name */}
@@ -70,6 +72,40 @@ export default function Home() {
               />
             </div>
 
+            {/* Password */}
+            <div>
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-200 text-green-800"
+                placeholder="Enter a password"
+                required
+              />
+            </div>
+
+            {/* Current Position */}
+            <div>
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="currentPosition">
+                Current Position
+              </label>
+              <input
+                type="text"
+                name="currentPosition"
+                id="currentPosition"
+                value={formData.currentPosition}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-200 text-green-800"
+                placeholder="Enter your current position"
+                required
+              />
+            </div>
+
             {/* Education */}
             <div>
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="education">
@@ -82,6 +118,40 @@ export default function Home() {
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-200 text-green-800"
                 placeholder="Enter your educational background"
+                rows={3}
+                required
+              />
+            </div>
+
+            {/* Certifications */}
+            <div>
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="certifications">
+                Certifications
+              </label>
+              <textarea
+                name="certifications"
+                id="certifications"
+                value={formData.certifications}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-200 text-green-800"
+                placeholder="Enter your certifications"
+                rows={2}
+                required
+              />
+            </div>
+
+            {/* Projects with Links */}
+            <div>
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="projects">
+                Projects (with Links)
+              </label>
+              <textarea
+                name="projects"
+                id="projects"
+                value={formData.projects}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-200 text-green-800"
+                placeholder="List your projects and their links"
                 rows={3}
                 required
               />
@@ -133,7 +203,6 @@ export default function Home() {
           </form>
         )}
 
-        {/* Resume Display Section */}
         {submitted && (
           <div className="mt-8">
             <h2 className="text-3xl font-bold text-blue-600 mb-6">Your Resume</h2>
@@ -146,7 +215,16 @@ export default function Home() {
                 <strong>Email:</strong> {formData.email}
               </p>
               <p className="text-lg text-green-900">
+                <strong>Current Position:</strong> {formData.currentPosition}
+              </p>
+              <p className="text-lg text-green-900">
                 <strong>Education:</strong> {formData.education}
+              </p>
+              <p className="text-lg text-green-900">
+                <strong>Certifications:</strong> {formData.certifications}
+              </p>
+              <p className="text-lg text-green-900">
+                <strong>Projects:</strong> {formData.projects}
               </p>
               <p className="text-lg text-green-900">
                 <strong>Work Experience:</strong> {formData.experience}
